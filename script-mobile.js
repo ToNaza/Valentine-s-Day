@@ -54,6 +54,6 @@ document.getElementById("con1").addEventListener("click", function () {
   setTimeout(function () {
     const pElement = document.querySelector("#val_box p"); // Знаходимо <p> в #val_box
     pElement.style.fontSize = "20px"; // Змінюємо розмір шрифта на 30px
-  }, 5300); // Затримка перед зміною шрифта, можна змінити час
+  }, 5500); // Затримка перед зміною шрифта, можна змінити час
   
 });
