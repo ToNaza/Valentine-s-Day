@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентиночка 2</title>
+
+
+    <script src="https://kit.fontawesome.com/bfec730d56.js" crossorigin="anonymous"></script>
+
+    <link rel="icon" href="./media/images.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css" media="screen and (max-width: 768px)"> <!-- Для мобільних -->    
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="Dtext"><p class="h2">Привіт ще раз, просто тапай на конверт дважди</p></div>
+    <div class="modal">
+        <div class="modal_box" id="modal_box">
+            <img id="con2" src="./media/convertVerh.png"/>
+            <img id="con1" src="./media/convert.png"/>
+        </div>
+    </div>
+    
+    <div id="val">
+        <div id="val_box">
+            <p>Я вирішив зробити цю валентинку трохи особливою, щоб вона відрізнялася від інших. Хотів би почати спілкуватися з тобою, якби не моя сором’язливість😅<br>
+                Бажаю тобі чудового дня і нехай всі твої мрії збуваються! 😊❤️<br>А, і сорька за галіму анімацію.</p>
+        </div>
+    </div>
+    
+
+    <script>
+        if (window.innerWidth <= 768) {
+          var script = document.createElement('script');
+          script.src = 'script-mobile.js';
+          document.head.appendChild(script);
+        } else {
+          var script = document.createElement('script');
+          script.src = 'script.js';
+          document.head.appendChild(script);
+        }
+      </script>
+</body>
+</html>

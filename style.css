@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(255,176,176);
+
+
+    margin: 0; /* Прибирає відступи по замовчуванню */
+    padding: 0; /* Прибирає відступи по замовчуванню */
+    height: 100vh; /* Встановлює висоту на 100% від висоти екрана */
+    width: 100%; /* Встановлює ширину на 100% від ширини екрана */
+    overflow: hidden; /* При необхідності прибирає скрол */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.modal_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modal_box.open #con2 {
+  transform: rotateX(0deg); /* Плавне відкриття конверта */
+}
+
+#con2 {
+  position: absolute;
+  top: 0;
+  transform-origin: bottom center;
+  transform: rotateX(180deg); /* Початкове положення (закрито) */
+  transition: transform 1s ease-in-out; /* Плавна анімація */
+  width: 1005px;
+  margin-top: -400px;
+  z-index: 3;
+}
+
+.modal_box.open #con2 {
+  transform: rotateX(0deg);
+}
+
+#con1 {
+  position: relative;
+  z-index: 2;
+}
+
+#val {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: block;
+  z-index: -1;
+}
+
+#val_box {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+  height: 300px;
+  width: 400px;
+  background-color: white;
+  margin-top: -200px;
+  z-index: 2;
+  
+
+  p{
+    font-size: 20px;
+    padding-top: 50px;
+  }
+}
+
+  
+  
+  .Dtext{
+    background-color: rgb(255, 255, 255); /* Білий фон */
+    border-radius: 20px;
+    height: 50px;
+    width: 700px;
+    margin: auto;
+    margin-top: 40px;
+  }
+
+  .h2{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding-top: 7px;
+    font-size: 30px;
+    
+  }
+
+
