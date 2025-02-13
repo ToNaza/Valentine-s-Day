@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadMessages();
     loadUsername();
     monitorTyping();
+    listenForUpdates(); // Додаємо слухача подій
 });
 
 let autoReload = false;
@@ -20,24 +21,27 @@ function sendMessage() {
     const message = document.getElementById('message').value.trim();
     if (!username || !message) return;
 
-    // Перевірка на команду "/Dell"
     if (message === '/Dell') {
         clearMessages();
         return;
     }
 
     saveMessage(username, message);
-    location.reload();
+    notifyOtherTabs(); // Сповіщаємо інші вкладки про зміну
 }
 
 function saveMessage(username, message) {
     let messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
     messages.push({ username, message });
     localStorage.setItem('chatMessages', JSON.stringify(messages));
+
+    notifyOtherTabs(); // Сповіщаємо інші пристрої
 }
 
 function loadMessages() {
     const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML = ''; // Очищуємо перед завантаженням нових
+
     let messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
     messages.forEach(({ username, message }) => {
         const div = document.createElement('div');
@@ -45,6 +49,7 @@ function loadMessages() {
         div.textContent = `${username}: ${message}`;
         chatBox.appendChild(div);
     });
+
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -60,7 +65,7 @@ function loadUsername() {
 function startAutoReload() {
     setInterval(() => {
         if (!isTyping) {
-            location.reload();
+            loadMessages(); // Оновлюємо тільки повідомлення, а не перезавантажуємо сторінку
         }
     }, 5000);
 }
@@ -75,5 +80,20 @@ function monitorTyping() {
 function clearMessages() {
     localStorage.removeItem('chatMessages');
     const chatBox = document.getElementById('chat-box');
-    chatBox.innerHTML = ''; // Очищаємо відображення повідомлень
+    chatBox.innerHTML = '';
+    notifyOtherTabs(); // Очищаємо повідомлення і на інших пристроях
+}
+
+// Функція для сповіщення інших вкладок
+function notifyOtherTabs() {
+    localStorage.setItem('chatUpdate', Date.now());
+}
+
+// Слухач подій для отримання оновлень
+function listenForUpdates() {
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'chatUpdate') {
+            loadMessages(); // Завантажуємо нові повідомлення при зміні localStorage
+        }
+    });
 }
